@@ -16,9 +16,6 @@ sh get-docker.sh
 sudo groupadd docker
 sudo usermod -aG docker $USER
 
-# Check Docker version
-sudo docker version
-
 # Install Docker Machine
 # Get the latest release of Docker Machine
 LATEST_MACHINE_RELEASE=$(curl -Ls -o /dev/null -w %{url_effective} https://github.com/docker/machine/releases/latest)
@@ -28,9 +25,6 @@ base="https://github.com/docker/machine/releases/download/$LATEST_MACHINE_VERSIO
 curl -L $base/docker-machine-$(uname -s)-$(uname -m) >/tmp/docker-machine &&
 sudo mv /tmp/docker-machine /usr/local/bin/docker-machine &&
 chmod +x /usr/local/bin/docker-machine
-
-# Check Docker Machine version
-docker-machine version
 
 # Install Docker Compose
 # Get the latest release of Docker Compose
@@ -45,9 +39,14 @@ sudo chmod +x /usr/local/bin/docker-compose
 # Create a symbolic link for Docker Compose
 sudo ln -s /usr/local/bin/docker-compose /usr/bin/docker-compose
 
-# Check Docker Compose version
-docker-compose --version
-
 # Clean up temporary files
 rm get-docker.sh
 
+# Check Docker version
+sudo docker version
+
+# Check Docker Machine version
+docker-machine version
+
+# Check Docker Compose version
+docker-compose --version
